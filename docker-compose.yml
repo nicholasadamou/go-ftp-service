@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  ftp-service:
+    build:
+      context: .
+    image: nicholasadamou/ftp-service:latest
+    environment:
+      GIN_MODE: ${GIN_MODE}
+      SSH_DESTINATION_FOLDER: ${SSH_DESTINATION_FOLDER}
+      SSH_HOST: ${SSH_HOST}
+      SSH_USERNAME: ${SSH_USERNAME}
+      SSH_PASSWORD: ${SSH_PASSWORD}
+      JWT_KEY: ${JWT_KEY}
+      JWT_SECRET: ${JWT_SECRET}
+      id_rsa: ${id_rsa}
+      id_rsa_pub: ${id_rsa_pub}
+    container_name: ftp-service
+    #    read_only: true
+    ports:
+      - "9089:9089"
+    networks:
+      - default
+networks:
+  default:
+    external: true
